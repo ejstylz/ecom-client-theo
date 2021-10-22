@@ -21,10 +21,12 @@ function App() {
   const [artWork, setArtwork] = useState({});
   const [open, setOpen] = useState(false);
   let [id, setId] = useState(100);
+  const [status, setStatus] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   async function fetchData() {
+    setStatus("Loading...");
     try {
       const response = await axios.get(`http://localhost:4000/api?id=${id}`);
       if (response.status === 200) {
@@ -32,7 +34,7 @@ function App() {
         setId(id++);
       }
     } catch (error) {
-      console.log(error);
+      setStatus("An error was encountered");
     }
   }
 
@@ -75,7 +77,7 @@ function App() {
             </Modal>
           </div>
         ) : (
-          <h1>Loading...</h1>
+          <h1>{status}</h1>
         )}
       </div>
     </>
