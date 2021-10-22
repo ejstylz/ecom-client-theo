@@ -28,7 +28,7 @@ function App() {
   async function fetchData() {
     setStatus("Loading...");
     try {
-      const response = await axios.get(`http://localhost:4000/api?id=${id}`);
+      const response = await axios.get(`https://art-theo.herokuapp.com/api?id=${id}`);
       if (response.status === 200) {
         setArtwork(response.data);
         setId(id++);
